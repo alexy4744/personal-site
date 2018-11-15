@@ -1,0 +1,48 @@
+ body {
+   font: 20px Montserrat, sans-serif;
+   color: #f5f6f7;
+ }
+
+ p {
+   font-size: 16px;
+ }
+
+ .bg-1 {
+   background-color: #eb5286;
+   /* hot pink */
+   color: #ffffff;
+ }
+
+ .bg-2 {
+   background-color: #474e5d;
+   /* Dark Blue */
+   color: #ffffff;
+ }
+
+ .avatar {
+   border-radius: 50%;
+   border: 4px solid white;
+ }
+
+ .content, .projects {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   height: 100vh;
+ }
+
+ .navbar {
+   padding-top: 15px;
+   padding-bottom: 15px;
+   border: 0;
+   border-radius: 0;
+   margin: 0 !important;
+   font-size: 15px;
+   letter-spacing: 2px;
+ }
+
+ .navbar-nav li a:hover {
+   color: #eb5286
+ }
+ 
