@@ -4,7 +4,11 @@ const projects = document.getElementById("projects");
 
 (async () => {
   const repositories = await getRepositories().catch(error => ({ error }));
-  if (repositories.error) return console.error(repositories.error);
+
+  if (repositories.error) {
+    document.getElementById("loader").classList.add("hidden");
+    return document.getElementById("fallback-projects").classList.remove("hidden");
+  }
 
   for (const repository of repositories) {
     if (repository.archived || repository.fork || repository.private) continue; // Skip this repository if any of these are true

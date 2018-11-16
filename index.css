@@ -19,7 +19,7 @@
 }
 
 .hidden {
-  display: none;
+  display: none !important;
 }
 
 body {
@@ -50,7 +50,7 @@ p {
   fill: var(--primary)
 }
 
-#landing-page, #projects, .languages, .language {
+#landing-page, #projects, #fallback-projects, .languages, .language {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -62,7 +62,7 @@ p {
   flex-direction: column;
 }
 
-#projects {
+#projects, #fallback-projects {
   flex-direction: row;
   flex-wrap: wrap;
 }
