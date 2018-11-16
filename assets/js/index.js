@@ -65,7 +65,6 @@ const projects = document.getElementById("projects");
 async function getRepositories() {
   const repositories = await superagent
     .get("httasdasps://api.github.com/users/alexy4744/repos")
-    .set("Authorization", "token 9866031a87fa634f6d9a6d907b8d5912c92b50fb")
     .catch(error => ({ error }));
   if (repositories.error) return Promise.reject(repositories.error);
   return Promise.resolve(repositories.body);
@@ -74,7 +73,6 @@ async function getRepositories() {
 async function getLanguages(repositoryName) {
   const languages = await superagent
     .get(`https://api.github.com/repos/alexy4744/${repositoryName}/languages`)
-    .set("Authorization", "token 9866031a87fa634f6d9a6d907b8d5912c92b50fb")
     .catch(error => ({ error }));
   if (languages.error) return Promise.reject(languages.error);
   return Promise.resolve(languages.body);
