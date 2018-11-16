@@ -25,17 +25,29 @@
     <div class="wave-container">
       <!-- GitHub icon maybe -->
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1170 193" class="wave">
-        <path d="M1175 131.2c0 0-81-89.4-224.3-103.4S713 72 665 97c-86 46-148 63-271 7C221.7 25.5 56 104.5-4 150 -4 58.7-3.3 0.3-3.3 0L1175 0V131.2z"/>
+        <path d="M1175 131.2c0 0-81-89.4-224.3-103.4S713 72 665 97c-86 46-148 63-271 7C221.7 25.5 56 104.5-4 150 -4 58.7-3.3 0.3-3.3 0L1175 0V131.2z" />
       </svg>
     </div>
   </div>
-  
+
   <h1 class="color-primary mb-6 text-center">Projects</h1>
 
   <section class="flex flex-row justify-center items-center" id="projects">
+    <!-- Show loader while fetching from API https://loading.io/css/ -->
+    <div class="lds-roller" id="loader">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+
     <!-- Projects -->
 
-    <div id="fallback-projects" hidden>
+    <div id="fallback-projects hidden">
       <!-- Projects hard coded -->
     </div>
   </section>

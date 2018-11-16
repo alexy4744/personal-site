@@ -27,10 +27,7 @@ const projects = document.getElementById("projects");
 
     const languages = await getLanguages(repository.name).catch(error => ({ error }));
 
-    if (languages.error || Object.keys(languages).length < 1) {
-      projects.appendChild(div);
-      continue;
-    }
+    if (languages.error || Object.keys(languages).length < 1) continue;
 
     const languagesDiv = document.createElement("div"); // Container to hold all the languages
     languagesDiv.className = "languages";
@@ -56,6 +53,8 @@ const projects = document.getElementById("projects");
     }
 
     projects.appendChild(div);
+
+    document.getElementById("loader").classList.add("hidden");
   }
 })();
 
