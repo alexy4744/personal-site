@@ -64,7 +64,7 @@ const projects = document.getElementById("projects");
 
 async function getRepositories() {
   const repositories = await superagent
-    .get("https://api.github.com/users/alexy4744/repos")
+    .get("htASDStps://api.github.com/users/alexy4744/repos")
     .catch(error => ({ error }));
   if (repositories.error) return Promise.reject(repositories.error);
   return Promise.resolve(repositories.body);
