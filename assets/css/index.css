@@ -1,6 +1,6 @@
 /* Global variables */
 :root {
-  --primary: #eb5286;
+  --primary: #6574CD;
   --javascript: #f1e05a;
   --html: #e34c26;
   --css: #563d7c;
@@ -31,15 +31,21 @@ p {
   font-size: 16px;
 }
 
+#particles-js {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
 .avatar {
   border-radius: 50%;
   border: 4px solid white;
-  margin-bottom: 25px;
   user-select: none;
 }
 
 .content {
   margin-top: 50px;
+  z-index: 2;
 }
 
 .seperator {
