@@ -5,52 +5,38 @@
   <title>Alex</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <link rel="stylesheet" href="index.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/superagent/3.8.3/superagent.min.js"></script>
 </head>
 
 <body>
-
-  <!-- Navbar -->
-  <nav class="navbar navbar-default">
-    <div class="container">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                        
-      </button>
-        <a class="navbar-brand" href="#">Alex</a>
-      </div>
-      <div class="collapse navbar-collapse" id="myNavbar">
-        <ul class="nav navbar-nav navbar-right">
-          <li><a href="#">WHO</a></li>
-          <li><a href="#">WHAT</a></li>
-          <li><a href="#">WHERE</a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-
-  <section class="landing-page">
-    <div class="content bg-primary container-fluid">
-      <img src="https://avatars0.githubusercontent.com/u/32107648?s=460&v=4" class="avatar"></img>
+  <section class="bg-primary" id="landing-page">
+    <div class="content flex flex-col justify-center items-center">
+      <img src="https://avatars0.githubusercontent.com/u/32107648?s=460&v=4" class="avatar" />
       <h1>Hi, my name is Alex</h1>
     </div>
   </section>
 
-  <section class="projects">
-    <div id="owner">
-      <h2>Repositories</h2>
+  <div class="seperator">
+    <div class="wave-container">
+      <!-- GitHub icon maybe -->
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1170 193" class="wave">
+        <path d="M1175 131.2c0 0-81-89.4-224.3-103.4S713 72 665 97c-86 46-148 63-271 7C221.7 25.5 56 104.5-4 150 -4 58.7-3.3 0.3-3.3 0L1175 0V131.2z"/>
+      </svg>
     </div>
+  </div>
+  
+  <h1 class="color-primary mb-6 text-center">Projects</h1>
 
-    <div id="forks">
-      <h2>Forked Repositories</h2>
+  <section class="flex flex-row justify-center items-center" id="projects">
+    <!-- Projects -->
+
+    <div id="fallback-projects" hidden>
+      <!-- Projects hard coded -->
     </div>
   </section>
 

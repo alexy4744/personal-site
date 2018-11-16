@@ -1,48 +1,107 @@
- body {
-   font: 20px Montserrat, sans-serif;
-   color: #f5f6f7;
- }
+:root {
+  --primary: #eb5286;
+  --javascript: #f1e05a;
+  --html: #e34c26;
+  --css: #563d7c;
+  --typescript: #2b7489;
+  --shell: #89e051;
+  --batchfile: grey;
+  --other: black;
+}
 
- p {
-   font-size: 16px;
- }
+body {
+  font: 20px Montserrat, sans-serif;
+  color: #f5f6f7;
+}
 
- .bg-1 {
-   background-color: #eb5286;
-   /* hot pink */
-   color: #ffffff;
- }
+p {
+  font-size: 16px;
+}
 
- .bg-2 {
-   background-color: #474e5d;
-   /* Dark Blue */
-   color: #ffffff;
- }
+.bg-primary {
+  background-color: var(--primary);
+}
 
- .avatar {
-   border-radius: 50%;
-   border: 4px solid white;
- }
+.color-primary {
+  color: var(--primary);
+}
 
- .content, .projects {
-   display: flex;
-   flex-direction: column;
-   justify-content: center;
-   align-items: center;
-   height: 100vh;
- }
+.avatar {
+  border-radius: 50%;
+  border: 4px solid white;
+  margin-bottom: 25px;
+  user-select: none;
+}
 
- .navbar {
-   padding-top: 15px;
-   padding-bottom: 15px;
-   border: 0;
-   border-radius: 0;
-   margin: 0 !important;
-   font-size: 15px;
-   letter-spacing: 2px;
- }
+.content {
+  margin-top: 50px;
+}
 
- .navbar-nav li a:hover {
-   color: #eb5286
- }
- 
+.seperator {
+  background: white;
+}
+
+.wave > path {
+  fill: var(--primary)
+}
+
+#landing-page, #projects, .languages, .language {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+#landing-page {
+  flex-direction: column;
+}
+
+#projects {
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.repository {
+  max-width: 512px;
+  max-height: 512px;
+  border:  4px solid var(--primary);
+  text-align: center;
+  margin: 25px;
+  padding: 25px;
+  border-radius: 0.25rem;
+}
+
+.repository-name, .description {
+  display: block;
+  color: var(--primary);
+  text-decoration: none;
+  margin-bottom: 15px;
+}
+
+.repository-name, .language-name {
+  font-weight: bolder;
+}
+
+.language {
+  margin: 0px 15px;
+}
+
+.language-color {
+  width: 16px;
+  height: 16px;
+  margin: 0px 5px;
+  border-radius: 50%;
+}
+
+.language-name, .description {
+  color: var(--primary);
+}
+
+/* Language colors */
+.javascript { background-color: var(--javascript); }
+.typescript { background-color: var(--typescript); }
+.html { background-color: var(--html); }
+.css { background-color: var(--css); }
+.shell { background-color: var(--shell); }
+.batchfile { background-color: var(--batchfile); }
+.other { background-color: var(--other); }
