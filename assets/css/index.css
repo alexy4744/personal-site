@@ -18,17 +18,25 @@
   color: var(--primary);
 }
 
+.fill-primary {
+  fill: #5661B3 !important;
+}
+
+.fill-light {
+  fill: #7886D7 !important;
+}
+
 .hidden {
   display: none !important;
+}
+
+.mirror-y {
+  transform: rotateY(180deg);
 }
 
 body {
   font: 20px Montserrat, sans-serif;
   color: #f5f6f7;
-}
-
-p {
-  font-size: 16px;
 }
 
 #particles-js {
@@ -44,6 +52,11 @@ p {
   border-radius: 50%;
   border: 4px solid white;
   user-select: none;
+  transition: transform 0.2s ease-in-out;
+}
+
+.avatar-container:hover {
+  transform: scale(1.05);
 }
 
 .content {
@@ -51,12 +64,20 @@ p {
   z-index: 2;
 }
 
-.seperator {
+.seperator-primary {
+  background: var(--primary);
+}
+
+.seperator-white {
   background: white;
 }
 
-.wave > path {
+.wave-primary > path {
   fill: var(--primary)
+}
+
+.wave-white > path {
+  fill: white;
 }
 
 #landing-page, #projects, #fallback-projects, .languages, .language {
@@ -121,6 +142,16 @@ p {
 
 .language-name, .description {
   color: var(--primary);
+}
+
+.tools > * {
+  margin: 25px 25px;
+  min-width: 128px;
+  min-height: 128px;
+}
+
+.logo { 
+  transition: fill 0.4s linear;
 }
 
 /* Language colors */

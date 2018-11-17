@@ -1,11 +1,28 @@
 /* eslint no-undef: 0 */
 
+const birthday = new Date("April 30, 2002 00:00:00");
+const age = Math.floor((Date.now() - birthday) * 3.17098e-11); // Find the difference between the current date with my birthday and convert to years
+
+document.getElementById("about-me").innerHTML = document.getElementById("about-me").innerHTML.replace("${age}", age);
+
+particlesJS("particles-js", particlesConfig);
+
+const logos = document.getElementsByClassName("logo");
+
+for (const logo of logos) {
+  logo.setAttribute("onmouseenter", "colorizeLogo(this)");
+  logo.setAttribute("onmouseleave", "muteLogo(this)");
+}
+
 const projects = document.getElementById("projects");
 
 (async () => {
   const repositories = await getRepositories().catch(error => ({ error }));
 
   if (repositories.error) {
+    console.log("Fetching repositories from GitHub API has failed.\nUsing fallback projects NOW!\nError below...");
+    console.error(repositories.error);
+
     document.getElementById("loader").classList.add("hidden");
     return document.getElementById("fallback-projects").classList.remove("hidden");
   }
@@ -64,7 +81,7 @@ const projects = document.getElementById("projects");
 
 async function getRepositories() {
   const repositories = await superagent
-    .get("htASDStps://api.github.com/users/alexy4744/repos")
+    .get("https://api.github.com/users/alexy4744/repos")
     .catch(error => ({ error }));
   if (repositories.error) return Promise.reject(repositories.error);
   return Promise.resolve(repositories.body);
@@ -76,4 +93,14 @@ async function getLanguages(repositoryName) {
     .catch(error => ({ error }));
   if (languages.error) return Promise.reject(languages.error);
   return Promise.resolve(languages.body);
+}
+
+function colorizeLogo(logo) { // eslint-disable-line
+  const parts = document.getElementsByClassName(logo.attributes.logo.value); // Get any other parts of the logo
+  for (const part of parts) part.setAttribute("style", `fill: ${part.attributes.color.value} !important;`); // Set each part to their designated colors specified in the attribute
+}
+
+function muteLogo(logo) { // eslint-disable-line
+  const parts = document.getElementsByClassName(logo.attributes.logo.value); // Get any other parts of the logo
+  for (const part of parts) part.setAttribute("style", `fill: ${part.attributes.mute.value} !important`); // Revert the colors back to specified values
 }
