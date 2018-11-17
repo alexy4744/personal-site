@@ -77,6 +77,11 @@ body {
   flex-direction: column;
 }
 
+.links > * {
+  margin: 0px 10px;
+  outline: none !important; /* Remove chrome's outline on buttons */
+}
+
 #projects, #fallback-projects {
   flex-direction: row;
   flex-wrap: wrap;
