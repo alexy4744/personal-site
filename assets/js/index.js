@@ -1,22 +1,32 @@
 /* eslint no-undef: 0 */
 
-const birthday = new Date("April 30, 2002 00:00:00");
-const age = Math.floor((Date.now() - birthday) * 3.17098e-11); // Find the difference between the current date with my birthday and convert to years
+document.addEventListener("DOMContentLoaded", initialize.bind(this));
 
-document.getElementById("about-me").innerHTML = document.getElementById("about-me").innerHTML.replace("${age}", age);
-
-particlesJS("particles-js", particlesConfig);
-
-const logos = document.getElementsByClassName("logo");
-
-for (const logo of logos) {
-  logo.setAttribute("onmouseenter", "colorizeLogo(this)");
-  logo.setAttribute("onmouseleave", "muteLogo(this)");
+function initialize() {
+  particlesJS("particles-js", particlesConfig); // Load particles
+  calculateAge(); // Replace age in about me
+  hoverableLogos(); // Make logos change colors on hover
+  renderRepositories(); // Fetch repositories from GitHub API
 }
 
-const projects = document.getElementById("projects");
+async function getRepositories() {
+  const repositories = await superagent
+    .get("https://api.github.com/users/alexy4744/repos")
+    .catch(error => ({ error }));
+  if (repositories.error) return Promise.reject(repositories.error);
+  return Promise.resolve(repositories.body);
+}
 
-(async () => {
+async function getLanguages(repositoryName) {
+  const languages = await superagent
+    .get(`https://api.github.com/repos/alexy4744/${repositoryName}/languages`)
+    .catch(error => ({ error }));
+  if (languages.error) return Promise.reject(languages.error);
+  return Promise.resolve(languages.body);
+}
+
+async function renderRepositories() {
+  const projects = document.getElementById("projects");
   const repositories = await getRepositories().catch(error => ({ error }));
 
   if (repositories.error) {
@@ -47,7 +57,6 @@ const projects = document.getElementById("projects");
     div.appendChild(p);
 
     const languages = await getLanguages(repository.name).catch(error => ({ error }));
-
     if (languages.error || Object.keys(languages).length < 1) continue;
 
     const languagesDiv = document.createElement("div"); // Container to hold all the languages
@@ -77,22 +86,15 @@ const projects = document.getElementById("projects");
 
     document.getElementById("loader").classList.add("hidden");
   }
-})();
-
-async function getRepositories() {
-  const repositories = await superagent
-    .get("https://api.github.com/users/alexy4744/repos")
-    .catch(error => ({ error }));
-  if (repositories.error) return Promise.reject(repositories.error);
-  return Promise.resolve(repositories.body);
 }
 
-async function getLanguages(repositoryName) {
-  const languages = await superagent
-    .get(`https://api.github.com/repos/alexy4744/${repositoryName}/languages`)
-    .catch(error => ({ error }));
-  if (languages.error) return Promise.reject(languages.error);
-  return Promise.resolve(languages.body);
+function hoverableLogos() {
+  const logos = document.getElementsByClassName("logo");
+
+  for (const logo of logos) {
+    logo.setAttribute("onmouseenter", "colorizeLogo(this)");
+    logo.setAttribute("onmouseleave", "muteLogo(this)");
+  }
 }
 
 function colorizeLogo(logo) { // eslint-disable-line
@@ -103,4 +105,11 @@ function colorizeLogo(logo) { // eslint-disable-line
 function muteLogo(logo) { // eslint-disable-line
   const parts = document.getElementsByClassName(logo.attributes.logo.value); // Get any other parts of the logo
   for (const part of parts) part.setAttribute("style", `fill: ${part.attributes.mute.value} !important`); // Revert the colors back to specified values
+}
+
+function calculateAge() {
+  const born = new Date("April 30, 2002 00:00:00");
+  const age = Math.floor((Date.now() - born) * 3.17098e-11); // Find the difference between the current date with my birthday and convert to years
+
+  document.getElementById("about-me").innerHTML = document.getElementById("about-me").innerHTML.replace("${age}", age);
 }
