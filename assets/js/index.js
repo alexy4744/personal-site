@@ -1,9 +1,53 @@
 /* eslint no-undef: 0 */
 
+const username = "alexy4744";
+const colors = {
+  "red": {
+    "red-dark": "#cc1f1a",
+    "red": "#e3342f",
+    "red-light": "#ef5753"
+  },
+  "orange": {
+    "orange-dark": "#de751f",
+    "orange": "#f6993f",
+    "orange-light": "#faad63"
+  },
+  "green": {
+    "green-dark": "#1f9d55",
+    "green": "#38c172",
+    "green-light": "#51d88a"
+  },
+  "teal": {
+    "teal-dark": "#38a89d",
+    "teal": "#4dc0b5",
+    "teal-light": "#64d5ca"
+  },
+  "blue": {
+    "blue-dark": "#2779bd",
+    "blue": "#3490dc",
+    "blue-light": "#6cb2eb"
+  },
+  "indigo": {
+    "indigo-dark": "#5661b3",
+    "indigo": "#6574cd",
+    "indigo-light": "#7886d7"
+  },
+  "purple": {
+    "purple-dark": "#794acf",
+    "purple": "#9561e2",
+    "purple-light": "#a779e9"
+  },
+  "pink": {
+    "pink-dark": "#eb5286",
+    "pink": "#f66d9b",
+    "pink-light": "#fa7ea8"
+  }
+};
+
 document.addEventListener("DOMContentLoaded", initialize.bind(this));
 
 function initialize() {
-  particlesJS("particles-js", particlesConfig); // Load particles
+  particlesJS("particles-js", particlesConfig()); // Load particles
   calculateAge(); // Replace age in about me
   hoverableLogos(); // Make logos change colors on hover
   renderRepositories(); // Fetch repositories from GitHub API
@@ -53,7 +97,9 @@ function changePrimary() { // eslint-disable-line
   }
 }
 
-async function renderRepositories() {
+async function renderRepositories(fallback) {
+  if (fallback) return renderFallback();
+
   const projects = document.getElementById("projects");
   const repositories = await getRepositories().catch(error => ({ error }));
 
@@ -61,9 +107,10 @@ async function renderRepositories() {
     console.log("Fetching repositories from GitHub API has failed.\nUsing fallback projects NOW!\nError below...");
     console.error(repositories.error);
 
-    document.getElementById("loader").classList.add("hidden");
-    return document.getElementById("fallback-projects").classList.remove("hidden");
+    return renderFallback();
   }
+
+  console.log("Sucessfully fetched repositories from GitHub API, fallback projects are kept HIDDEN!");
 
   for (const repository of repositories) {
     if (repository.archived || repository.fork || repository.private) continue; // Skip this repository if any of these are true
@@ -116,9 +163,14 @@ async function renderRepositories() {
   }
 }
 
+function renderFallback() {
+  document.getElementById("loader").classList.add("hidden");
+  return document.getElementById("fallback-projects").classList.remove("hidden");
+}
+
 async function getRepositories() {
   const repositories = await superagent
-    .get("httaps://api.github.com/users/alexy4744/repos")
+    .get(`https://api.github.com/users/${username}/repos`)
     .catch(error => ({ error }));
   if (repositories.error) return Promise.reject(repositories.error);
   return Promise.resolve(repositories.body);
@@ -126,8 +178,122 @@ async function getRepositories() {
 
 async function getLanguages(repositoryName) {
   const languages = await superagent
-    .get(`https://api.github.com/repos/alexy4744/${repositoryName}/languages`)
+    .get(`https://api.github.com/repos/${username}/${repositoryName}/languages`)
     .catch(error => ({ error }));
   if (languages.error) return Promise.reject(languages.error);
   return Promise.resolve(languages.body);
+}
+
+// Function to avoid hoisting the variable in the top of the file
+function particlesConfig() {
+  return {
+    "particles": {
+      "number": {
+        "value": 80,
+        "density": {
+          "enable": true,
+          "value_area": 800
+        }
+      },
+      "color": {
+        "value": "#ffffff"
+      },
+      "shape": {
+        "type": "circle",
+        "stroke": {
+          "width": 0,
+          "color": "#000000"
+        },
+        "polygon": {
+          "nb_sides": 5
+        },
+        "image": {
+          "src": "img/github.svg",
+          "width": 100,
+          "height": 100
+        }
+      },
+      "opacity": {
+        "value": 0.5,
+        "random": false,
+        "anim": {
+          "enable": false,
+          "speed": 1,
+          "opacity_min": 0.1,
+          "sync": false
+        }
+      },
+      "size": {
+        "value": 3,
+        "random": true,
+        "anim": {
+          "enable": false,
+          "speed": 40,
+          "size_min": 0.1,
+          "sync": false
+        }
+      },
+      "line_linked": {
+        "enable": false,
+        "distance": 150,
+        "color": "#ffffff",
+        "opacity": 0.4,
+        "width": 1
+      },
+      "move": {
+        "enable": true,
+        "speed": 20,
+        "direction": "top-left",
+        "random": true,
+        "straight": false,
+        "out_mode": "out",
+        "bounce": false,
+        "attract": {
+          "enable": false,
+          "rotateX": 600,
+          "rotateY": 1200
+        }
+      }
+    },
+    "interactivity": {
+      "detect_on": "canvas",
+      "events": {
+        "onhover": {
+          "enable": true,
+          "mode": "repulse"
+        },
+        "onclick": {
+          "enable": true,
+          "mode": "push"
+        },
+        "resize": true
+      },
+      "modes": {
+        "grab": {
+          "distance": 400,
+          "line_linked": {
+            "opacity": 1
+          }
+        },
+        "bubble": {
+          "distance": 400,
+          "size": 40,
+          "duration": 2,
+          "opacity": 8,
+          "speed": 3
+        },
+        "repulse": {
+          "distance": 200,
+          "duration": 0.4
+        },
+        "push": {
+          "particles_nb": 4
+        },
+        "remove": {
+          "particles_nb": 2
+        }
+      }
+    },
+    "retina_detect": true
+  };
 }

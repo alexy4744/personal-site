@@ -22,7 +22,6 @@ body {
 .fill-primary { fill: var(--primary-dark) !important; }
 .fill-light { fill: var(--primary-light) !important; }
 .hidden { display: none !important; }
-.mirror-y { transform: rotateY(180deg); }
 
 #particles-js {
   position: absolute;
@@ -51,10 +50,6 @@ body {
 
 .seperator-primary {
   background: var(--primary);
-}
-
-.seperator-white {
-  background: white;
 }
 
 .wave-primary > path {

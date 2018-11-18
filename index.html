@@ -12,8 +12,6 @@
 
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/superagent/3.8.3/superagent.min.js"></script>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-  <script type="text/javascript" src="assets/js/particles-config.js"></script>
-  <script type="text/javascript" src="assets/js/colors.js"></script>
   <script type="text/javascript" src="assets/js/index.js"></script>
 </head>
 
@@ -43,7 +41,7 @@
     </div>
   </section>
 
-  <div class="seperator-white">
+  <div>
     <div class="wave-container">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1170 193" class="wave-primary">
         <path d="M1175 131.2c0 0-81-89.4-224.3-103.4S713 72 665 97c-86 46-148 63-271 7C221.7 25.5 56 104.5-4 150 -4 58.7-3.3 0.3-3.3 0L1175 0V131.2z" />
@@ -51,7 +49,7 @@
     </div>
   </div>
 
-  <section class="bg-white color-primary p-8">
+  <section class="color-primary p-8">
     <h1 class="text-center mb-6">Who am I?</h1>
     <p class="text-center" id="about-me">
       Hi, my name is Alex. I am currently ${age} years old.<br>
@@ -59,11 +57,10 @@
     </p>
   </section>
 
-  <div class="seperator-primary mirror-y">
+  <div class="seperator-primary">
     <div class="wave-container">
-      <!-- GitHub icon maybe -->
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1170 193" class="wave-white">
-        <path d="M1175 131.2c0 0-81-89.4-224.3-103.4S713 72 665 97c-86 46-148 63-271 7C221.7 25.5 56 104.5-4 150 -4 58.7-3.3 0.3-3.3 0L1175 0V131.2z" />
+      <svg class="wave-white wave-reflected" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1170 197">
+        <path d="M0-4l1169.31.3s.69,58.28.69,196.7c-59.54-92.71-224-171.55-395-93.21-122.06,55.89-183.59,38.92-268.93-7-47.64-25-141.32-83-283.52-69.06S0,126.93,0,126.93Z" />
       </svg>
     </div>
   </div>
@@ -170,7 +167,7 @@
     </div>
   </section>
 
-  <div class="seperator-white">
+  <div>
     <div class="wave-container">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1170 193" class="wave-primary">
         <path d="M1175 131.2c0 0-81-89.4-224.3-103.4S713 72 665 97c-86 46-148 63-271 7C221.7 25.5 56 104.5-4 150 -4 58.7-3.3 0.3-3.3 0L1175 0V131.2z" />
@@ -178,9 +175,9 @@
     </div>
   </div>
 
-  <h1 class="color-primary mb-6 text-center select-none">Projects</h1>
+  <section>
+    <h1 class="color-primary mb-6 text-center select-none">Projects</h1>
 
-  <section class="flex flex-row justify-center items-center" id="projects">
     <!-- Show loader while fetching from API https://loading.io/css/ -->
     <div class="lds-roller" id="loader">
       <div></div>
@@ -194,9 +191,11 @@
     </div>
 
     <!-- Projects -->
+    <div class="flex flex-row justify-center items-center" id="projects"></div>
 
+    <!-- Projects hard coded in case fetching from API fails due to ratelimits etc... -->
+    <!-- Normally hidden but div is shown once error occurs -->
     <div class="hidden" id="fallback-projects">
-      <!-- Projects hard coded in case fetching from API fails due to ratelimits etc... -->
       <div class="repository"><a class="repository-name" href="https://github.com/alexy4744/alexy4744.github.io">alexy4744.github.io</a>
         <p class="description">My personal site</p>
         <div class="languages">
