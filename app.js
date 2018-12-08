@@ -2,13 +2,16 @@ const fs = require("fs-nextra");
 const path = require("path");
 const http = require("http");
 const https = require("https");
-
 const dotenv = require("dotenv");
-const bodyParser = require("body-parser");
+
 const express = require("express");
 
 const index = require("./routes/index");
 const webhooks = require("./routes/webhooks");
+
+const bodyParser = require("body-parser");
+const helmet = require("helmet");
+const verifySignature = require("./middlewares/verifySignature");
 
 dotenv.config({ path: path.join(__dirname, "./process.env") });
 
@@ -20,13 +23,12 @@ app.set("view engine", "ejs");
 app.set("projects", []); // Global object to hold cached projects
 
 app.use(express.static(path.join(__dirname, "assets")));
+app.use(helmet());
 app.use(bodyParser.json());
 
 app.use("/", index);
+app.use(verifySignature); // Middleware to verify signatures to make sure it is GitHub posting to this endpoint
 app.use("/webhooks", webhooks);
-
-// catch 404
-// app.use((req, res) => res.render("error"));
 
 (async () => {
   const options = {
