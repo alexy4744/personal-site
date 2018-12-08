@@ -6,14 +6,13 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <link rel="stylesheet" href="assets/css/index.css">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="stylesheet" href="/css/index.css">
+  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/superagent/3.8.3/superagent.min.js"></script>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-  <script type="text/javascript" src="assets/js/index.js"></script>
+  <script type="text/javascript" src="/js/index.js"></script>
 
   <noscript>
     <div>
@@ -29,7 +28,7 @@
     <div class="min-w-full min-h-full" id="particles-js"></div>
     <div class="content flex flex-col justify-center items-center">
       <div class="avatar-container">
-        <img src="assets/images/alex.png" class="avatar" />
+        <img src="/images/alex.png" class="avatar" />
       </div>
 
       <div class="my-5 links flex flex-row justify-center items-center min-w-full">
@@ -45,7 +44,6 @@
             <path fill="white" d="M7.621,10.267c-0.367,0.404-0.457,0.694-0.938,1.454c0.311,0.217,0.908,0.718,1.322,1.581 c0.827-0.475,1.213-0.547,1.651-0.916c2.862-2.41,9.87-11.049,9.629-11.299C19.032,0.822,10.141,7.503,7.621,10.267z M5.857,12.392   c-1.243-0.22-2.47,0.566-3.289,2.53c-0.82,1.964-2.284,2.75-2.568,2.702c1.528,0.553,6.188,1.967,7.346-3.416 C6.854,12.917,5.857,12.392,5.857,12.392z" />
           </svg>
         </button>
-
       </div>
     </div>
   </section>
@@ -187,64 +185,8 @@
   <section class="flex flex-col justify-center items-center">
     <h1 class="color-primary mb-6 text-center select-none">Projects</h1>
 
-    <!-- Show loader while fetching from API https://loading.io/css/ -->
-    <div class="lds-roller" id="loader">
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
-
     <!-- Projects -->
     <div class="flex flex-row justify-center items-center" id="projects"></div>
-
-    <!-- Projects hard coded in case fetching from API fails due to ratelimits etc... -->
-    <!-- Normally hidden but div is shown once error occurs -->
-    <div class="hidden" id="fallback-projects">
-      <div class="repository"><a class="repository-name" href="https://github.com/alexy4744/alexy4744.github.io">alexy4744.github.io</a>
-        <p class="description">My personal site</p>
-        <div class="languages">
-          <div class="language">
-            <div class="language-color css"></div><span class="language-name">CSS</span>
-          </div>
-          <div class="language">
-            <div class="language-color javascript"></div><span class="language-name">JavaScript</span>
-          </div>
-          <div class="language">
-            <div class="language-color html"></div><span class="language-name">HTML</span>
-          </div>
-        </div>
-      </div>
-      <div class="repository"><a class="repository-name" href="https://github.com/alexy4744/Miyako">Miyako</a>
-        <p class="description">A WIP Discord bot with powerful moderation/anti-raid features.</p>
-        <div class="languages">
-          <div class="language">
-            <div class="language-color javascript"></div><span class="language-name">JavaScript</span>
-          </div>
-          <div class="language">
-            <div class="language-color shell"></div><span class="language-name">Shell</span>
-          </div>
-          <div class="language">
-            <div class="language-color batchfile"></div><span class="language-name">Batchfile</span>
-          </div>
-        </div>
-      </div>
-      <div class="repository"><a class="repository-name" href="https://github.com/alexy4744/Miyako-Dashboard">Miyako-Dashboard</a>
-        <p class="description">Web dashboard for https://miyako.xyz/</p>
-        <div class="languages">
-          <div class="language">
-            <div class="language-color javascript"></div><span class="language-name">JavaScript</span>
-          </div>
-          <div class="language">
-            <div class="language-color css"></div><span class="language-name">CSS</span>
-          </div>
-        </div>
-      </div>
-    </div>
   </section>
 
   <div class="seperator-primary">

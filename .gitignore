@@ -1,1 +1,5 @@
+*.exe
+*.env
+*.bat
 .eslintrc
+node_modules/

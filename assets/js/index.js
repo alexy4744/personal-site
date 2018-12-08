@@ -1,6 +1,5 @@
 /* eslint no-undef: 0 */
 
-const username = "alexy4744";
 const colors = {
   "red": {
     "red-dark": "#cc1f1a",
@@ -50,7 +49,6 @@ function initialize() {
   particlesJS("particles-js", particlesConfig()); // Load particles
   calculateAge(); // Replace age in about me
   hoverableLogos(); // Make logos change colors on hover
-  renderRepositories(); // Fetch repositories from GitHub API
 }
 
 function calculateAge() {
@@ -95,93 +93,6 @@ function changePrimary() { // eslint-disable-line
     if (value === color) return false;
     return true;
   }
-}
-
-async function renderRepositories(fallback) {
-  if (fallback) return renderFallback();
-
-  const projects = document.getElementById("projects");
-  const repositories = await getRepositories().catch(error => ({ error }));
-
-  if (repositories.error) {
-    console.log("Fetching repositories from GitHub API has failed.\nUsing fallback projects NOW!\nError below...");
-    console.error(repositories.error);
-
-    return renderFallback();
-  }
-
-  console.log("Sucessfully fetched repositories from GitHub API, fallback projects are kept HIDDEN!");
-
-  for (const repository of repositories) {
-    if (repository.archived || repository.fork || repository.private) continue; // Skip this repository if any of these are true
-
-    const div = document.createElement("div");
-    const a = document.createElement("a");
-    const p = document.createElement("p");
-
-    div.className = "repository";
-
-    a.className = "repository-name";
-    a.innerHTML = repository.name;
-    a.href = repository.html_url;
-
-    p.className = "description";
-    p.innerHTML = repository.description;
-
-    div.appendChild(a);
-    div.appendChild(p);
-
-    const languages = await getLanguages(repository.name).catch(error => ({ error }));
-    if (languages.error || Object.keys(languages).length < 1) continue;
-
-    const languagesDiv = document.createElement("div"); // Container to hold all the languages
-    languagesDiv.className = "languages";
-
-    for (let language in languages) {
-      const lang = language;
-
-      language = document.createElement("div"); // Container to hold all the text and color of the language
-      language.className = "language";
-
-      const langName = document.createElement("span");
-      langName.className = "language-name";
-      langName.innerHTML = lang;
-
-      const langColor = document.createElement("div");
-      langColor.className = `language-color ${lang.toLowerCase()}`;
-
-      language.appendChild(langColor);
-      language.appendChild(langName);
-
-      languagesDiv.appendChild(language);
-      div.appendChild(languagesDiv);
-    }
-
-    projects.appendChild(div);
-
-    document.getElementById("loader").classList.add("hidden");
-  }
-}
-
-function renderFallback() {
-  document.getElementById("loader").classList.add("hidden");
-  return document.getElementById("fallback-projects").classList.remove("hidden");
-}
-
-async function getRepositories() {
-  const repositories = await superagent
-    .get(`https://api.github.com/users/${username}/repos`)
-    .catch(error => ({ error }));
-  if (repositories.error) return Promise.reject(repositories.error);
-  return Promise.resolve(repositories.body);
-}
-
-async function getLanguages(repositoryName) {
-  const languages = await superagent
-    .get(`https://api.github.com/repos/${username}/${repositoryName}/languages`)
-    .catch(error => ({ error }));
-  if (languages.error) return Promise.reject(languages.error);
-  return Promise.resolve(languages.body);
 }
 
 // Function to avoid hoisting the variable in the top of the file
