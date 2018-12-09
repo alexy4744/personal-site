@@ -59,7 +59,7 @@
   <section class="color-primary p-8">
     <h1 class="text-center mb-6">Who am I?</h1>
     <p class="text-center" id="about-me">
-      Hi, my name is Alex. I am currently ${age} years old.<br>
+      Hi, my name is Alex. I am currently <%= age %> years old.<br>
       I like JavaScript.
     </p>
   </section>
@@ -187,8 +187,29 @@
 
     <!-- Projects -->
     <div class="flex flex-row justify-center items-center" id="projects">
-      <% for (const project of projects) { %>
-        
+      <% for (const repository of repositories) { %>
+        <div class="repository">
+          <a class="repository-name" href="<%= repository.html_url %>">
+            <%= repository.name %>
+          </a>
+
+          <p class="description">
+            <%= repository.description %>
+          </p>
+                        
+          <% if (repository.languages) { %>
+            <div class="languages">
+              <% for (const language in repository.languages) { %>
+                <div class="language">
+                  <div class="language-color <%= language.toLowerCase() %>"></div>
+                  <span class="language-name">
+                    <%= language %>
+                  </span>
+                </div>
+              <% } %>
+            </div>
+          <% } %>
+        </div>
       <% } %>
     </div>
   </section>

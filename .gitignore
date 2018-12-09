@@ -3,3 +3,4 @@
 *.bat
 .eslintrc
 node_modules/
+certs/

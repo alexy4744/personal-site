@@ -47,15 +47,7 @@ document.addEventListener("DOMContentLoaded", initialize.bind(this));
 
 function initialize() {
   particlesJS("particles-js", particlesConfig()); // Load particles
-  calculateAge(); // Replace age in about me
   hoverableLogos(); // Make logos change colors on hover
-}
-
-function calculateAge() {
-  const born = new Date("April 30, 2002 00:00:00");
-  const age = Math.floor((Date.now() - born) * 3.17098e-11); // Find the difference between the current date with my birthday and convert to years
-
-  document.getElementById("about-me").innerHTML = document.getElementById("about-me").innerHTML.replace("${age}", age);
 }
 
 function hoverableLogos() {

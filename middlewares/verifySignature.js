@@ -10,7 +10,7 @@ module.exports = (req, res, next) => {
 
   try {
     const isGitHub = crypto.timingSafeEqual(Buffer.from(signature), Buffer.from(digested));
-    if (!isGitHub) return res.status(400);
+    if (!isGitHub) return res.status(403);
     return next();
   } catch (_) {
     return res.status(400);
