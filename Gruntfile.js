@@ -44,12 +44,6 @@ module.exports = (grunt) => {
       js: {
         files: "./src/assets/js/*.js",
         tasks: ["uglify"],
-      },
-      options: {
-        livereload: {
-          host: "localhost",
-          port: 8081
-        }
       }
     }
   });

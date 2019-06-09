@@ -12,6 +12,55 @@
 </head>
 
 <body>
+  <header>
+    <div id="avatar-container">
+      <img src="/img/alex.png" alt="Alex">
+    </div>
+
+    <nav>
+      <a href="https://github.com/alexy4744">
+        <img src="/svg/github.svg" alt="GitHub">
+      </a>
+      
+      <button>
+        <img src="/svg/paint-brush.svg" alt="Change colors">
+      </button>
+    </nav>
+  </header>
+
+  <%- include("../partials/divider", { flipped: false, inverted: false }); %>
+
+  <section>
+    <h2 class="color-primary">Who Am I?</h2>
+    <p class="color-primary">
+      Hi, my name is Alex. I am currently about ~<%= age %> years old.<br>
+      I like JavaScript.
+    </p>
+  </section>
+  
+  <%- include("../partials/divider", { flipped: false, inverted: true }); %>
+
+  <section class="bg-primary" id="toolset">
+    <h2>Toolset</h2>
+
+    <div class="tools">
+      <%- include("../partials/tools/html.ejs") %>
+      <%- include("../partials/tools/css.ejs") %>
+      <%- include("../partials/tools/vue.ejs") %>
+      <%- include("../partials/tools/sass.ejs") %>
+      <%- include("../partials/tools/nodejs.ejs") %>
+    </div>
+  </section>
+
+  <%- include("../partials/divider", { flipped: false, inverted: false }); %>
+
+  <section>
+    <h2 class="color-primary">Projects</h2>
+  </section>
+
+  <footer>
+    <%- include("../partials/divider", { flipped: true, inverted: false }); %>
+  </footer>
 
   <script src="/js/main.js"></script>
 </body>

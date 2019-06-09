@@ -1,0 +1,112 @@
+@import "normalize.scss";
+@import "colors.scss";
+
+#avatar-container {
+  background-image: url("/img/space.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: 5px solid white;
+  border-radius: 100%;
+  user-select: none;
+
+  & img {
+    height: auto;
+    max-width: 100%;
+  }
+}
+
+.bg-primary {
+  background-color: $primary;
+}
+
+.color-primary {
+  color: $primary;
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+
+h2 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 36px;
+  font-weight: 700;
+  letter-spacing: -1px;
+}
+
+header {
+  align-items: center;
+  background: $primary;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 50px;
+
+  & nav {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin-top: 25px;
+  }
+
+  & nav a {
+    display: inline-block;
+    margin: 0 10px;
+  }
+}
+
+p {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 24px;
+  text-align: center;
+}
+
+section {
+  align-items: center;
+  color: $secondary;
+  display: flex;
+  flex-direction: column;
+  font-family: Arial, Helvetica, sans-serif;
+  height: 100%;
+}
+
+svg {
+  display: block;    
+}
+
+#toolset > .tools {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  & > svg {
+    filter: url(".grayscale");
+    filter: grayscale(100%);
+    margin: 25px;
+    transition: filter 0.3s cubic-bezier(0.39, 0.575, 0.565, 1);
+  
+    &:hover {
+      filter: none;
+    }
+  }
+}
+
+.wave {
+  fill: $primary;
+}
+
+.wave-inverted {
+  background-color: $primary;
+  fill: $secondary;
+  // transform: rotateY(180deg);
+}
+
+.wave-flipped {
+  transform: rotateX(180deg);
+}
