@@ -87,6 +87,7 @@ svg {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
+  overflow: auto;
 
   & > svg {
     filter: url(".grayscale");
