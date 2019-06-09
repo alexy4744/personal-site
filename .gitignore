@@ -1,0 +1,10 @@
+.env
+ngrok.exe
+
+.idea/
+.vscode/
+node_modules/
+build/
+tmp/
+temp/
+db/
