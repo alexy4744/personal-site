@@ -371,6 +371,7 @@ h2 {
   font-size: 36px;
   font-weight: 700;
   letter-spacing: -1px;
+  text-align: center;
 }
 
 header {
@@ -421,7 +422,9 @@ svg {
 #toolset > .tools > svg {
   filter: url(".grayscale");
   filter: grayscale(100%);
+  height: auto;
   margin: 25px;
+  max-width: 100%;
   transition: filter 0.3s cubic-bezier(0.39, 0.575, 0.565, 1);
 }
 #toolset > .tools > svg:hover {

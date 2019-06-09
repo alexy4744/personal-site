@@ -36,6 +36,7 @@ h2 {
   font-size: 36px;
   font-weight: 700;
   letter-spacing: -1px;
+  text-align: center;
 }
 
 header {
@@ -77,6 +78,8 @@ section {
 
 svg {
   display: block;    
+  height: auto;
+  max-width: 100%;
 }
 
 #toolset > .tools {
