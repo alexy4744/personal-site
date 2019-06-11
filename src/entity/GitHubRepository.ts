@@ -1,49 +1,49 @@
 import { Column, Entity, PrimaryColumn } from "typeorm";
 
 @Entity()
-export default class Repository {
+export default class GitHubRepository {
   @Column()
-  private archived: boolean;
+  public archived: boolean;
 
   @Column()
-  private created_at: string;
+  public created_at: string;
 
   @Column()
-  private disabled: boolean;
+  public disabled: boolean;
 
   @Column("varchar", { nullable: true })
-  private description: string | null;
+  public description: string | null;
 
   @Column()
-  private fork: boolean;
+  public fork: boolean;
 
   @Column()
-  private forks_count: number;
+  public forks_count: number;
 
   @Column()
-  private html_url: string;
+  public html_url: string;
 
   @PrimaryColumn()
-  private id: number;
+  public id: number;
 
   @Column("varchar", { nullable: true })
-  private language: string | null;
+  public language: string | null;
 
   @Column()
-  private name: string;
+  public name: string;
 
   @Column()
-  private private: boolean;
+  public private: boolean;
 
   @Column("varchar", { nullable: true })
-  private pushed_at: string | null;
+  public pushed_at: string | null;
 
   @Column()
-  private stargazers_count: number;
+  public stargazers_count: number;
 
   @Column("varchar", { nullable: true })
-  private updated_at: string | null;
+  public updated_at: string | null;
 
   @Column()
-  private watchers_count: number;
+  public watchers_count: number;
 }

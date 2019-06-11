@@ -18,45 +18,82 @@
     </div>
 
     <nav>
-      <a href="https://github.com/alexy4744">
-        <img src="/svg/github.svg" alt="GitHub">
+      <a href="https://github.com/alexy4744" target="__blank">
+        <img src="/icons/github.svg" alt="GitHub">
+      </a>
+
+      <a href="mailto:hello@alexyu.xyz" target="__blank">
+        <img src="/icons/email.svg" alt="Email">
+      </a>
+
+      <a href="https://chain.so/a/6rj6snq" target="__blank">
+        <img src="/icons/bitcoin.svg" alt="Deposits">
       </a>
       
       <button>
-        <img src="/svg/paint-brush.svg" alt="Change colors">
+        <img src="/icons/paint-brush.svg" alt="Change colors">
       </button>
     </nav>
   </header>
 
   <%- include("../partials/divider", { flipped: false, inverted: false }); %>
 
-  <section>
+  <article>
     <h2 class="color-primary">Who Am I?</h2>
     <p class="color-primary">
-      Hi, my name is Alex. I am currently about <strong>~<%= age %></strong> years old.<br>
+      Hi, my name is Alex. I am currently about <strong id="age">~<%= age %></strong> years old.<br>
       I like JavaScript.
     </p>
-  </section>
+  </article>
   
   <%- include("../partials/divider", { flipped: false, inverted: true }); %>
 
-  <section class="bg-primary" id="toolset">
+  <article class="bg-primary">
     <h2>Toolset</h2>
 
     <div class="tools">
       <%- include("../partials/tools/html.ejs") %>
       <%- include("../partials/tools/css.ejs") %>
       <%- include("../partials/tools/vue.ejs") %>
+      <%- include("../partials/tools/mongodb.ejs") %>
       <%- include("../partials/tools/sass.ejs") %>
       <%- include("../partials/tools/nodejs.ejs") %>
     </div>
-  </section>
+  </article>
 
   <%- include("../partials/divider", { flipped: false, inverted: false }); %>
 
-  <section>
+  <article>
     <h2 class="color-primary">Projects</h2>
-  </section>
+
+    <div class="projects">
+      <% Object.keys(repositories).forEach((index) => { %>
+        <% const repository = repositories[index] %> 
+
+        <div class="repository">
+          <a href="<%= repository.html_url %>">
+            <%= repository.name %>
+          </a>
+
+          <p>
+            <%= repository.description %>
+          </p>
+
+          <div class="repository-statistics">
+            <div>
+              <img src="/icons/star.svg" alt="Stargazers: ">
+              <span><%= repository.stargazers_count %></span>
+            </div>
+
+            <div>
+              <img src="/icons/eye.svg" alt="Watchers: ">
+              <span><%= repository.watchers_count %></span>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  </article>
 
   <footer>
     <%- include("../partials/divider", { flipped: true, inverted: false }); %>

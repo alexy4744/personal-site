@@ -5,6 +5,20 @@ const sass = require("sass");
 module.exports = (grunt) => {
   grunt.initConfig({
     pkg: grunt.file.readJSON("package.json"),
+    babel: {
+      options: {
+        sourceMap: false,
+        presets: ["@babel/preset-env"]
+      },
+      dist: {
+        files: [{
+          expand: true,
+          cwd: "./src/assets/js",
+          src: ["*.js"],
+          dest: "./public/js"
+        }]
+      }
+    },
     sass: {
       options: {
         implementation: sass,
@@ -30,7 +44,7 @@ module.exports = (grunt) => {
       build: {
         files: [{
           expand: true,
-          cwd: "./src/assets/js",
+          cwd: "./public/js",
           src: ["*.js"],
           dest: "./public/js"
         }]
@@ -43,14 +57,15 @@ module.exports = (grunt) => {
       },
       js: {
         files: "./src/assets/js/*.js",
-        tasks: ["uglify"],
+        tasks: ["babel", "uglify"],
       }
     }
   });
 
+  grunt.loadNpmTasks("grunt-babel");
   grunt.loadNpmTasks("grunt-sass");
   grunt.loadNpmTasks("grunt-contrib-uglify");
   grunt.loadNpmTasks("grunt-contrib-watch");
 
-  grunt.registerTask("default", ["sass", "uglify"]);
+  grunt.registerTask("default", ["babel", "uglify", "sass"]);
 };
