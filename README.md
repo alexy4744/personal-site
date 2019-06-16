@@ -2,7 +2,7 @@
 
 Steps to run this project:
 
-1. Run `npm i --production` or `yarn install --production` command.
+1. Run `npm i --only=prod` or `yarn install --production` command.
 2. Rename `.env.example` to `.env` and fill out `BIRTHDAY` and `GITHUB_SECRET` fields.
 3. Setup database settings inside `ormconfig.json` file.
 4. Run `node .` command to start the server with prebuilt files.
