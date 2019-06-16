@@ -18,14 +18,6 @@
     height: auto;
     max-width: 100%;
   }
-
-  &:hover {
-    transform: scale(1.05);
-  }
-}
-
-.bg-primary {
-  background-color: $primary;
 }
 
 article {
@@ -46,10 +38,6 @@ button {
   outline: none;
 }
 
-.color-primary {
-  color: $primary;
-}
-
 h2 {
   font-family: Arial, Helvetica, sans-serif;
   font-weight: 700;
@@ -58,7 +46,7 @@ h2 {
   text-align: center;
 
   $font-size: (
-    384px: 22px,
+    384px: 24px,
     576px: 26px,
     768px: 32px,
     992px: 36px
@@ -150,12 +138,12 @@ p {
     word-wrap: break-word;
   }
 
-  & a {
+  & .repository-name {
     font-weight: 600;
     display: block;
-    text-align: center; 
+    text-align: center;
     text-decoration: none;
-    
+
     $font-size: (
       384px: 20px,
       576px: 22px,
@@ -165,7 +153,8 @@ p {
     @include poly-fluid-sizing("font-size", $font-size);
   }
 
-  & p {
+  & .repository-description,
+  & .repository-language {
     $font-size: (
       384px: 14px,
       576px: 16px,
@@ -173,6 +162,40 @@ p {
       992px: 20px
     );
     @include poly-fluid-sizing("font-size", $font-size);
+  }
+  // {
+  //   "compilerOptions": {
+  //     "target": "esnext",
+  //     "module": "commonjs",
+  //     "moduleResolution": "node",
+  //     "rootDir": "./src",
+  //     "outDir": "./build",
+  //     "emitDecoratorMetadata": true,
+  //     "experimentalDecorators": true,
+  //     "esModuleInterop": true,
+  //     "sourceMap": true,
+  //     "baseUrl": "./"
+  //   }
+  // }
+  & .repository-language {
+    margin-bottom: 15px;
+    padding: 0;
+  }
+
+  & .repository-language > span {
+    border-radius: 50%;
+    content: "";
+    display: inline-block;
+    vertical-align: top;
+
+    $size: (
+      384px: 14px,
+      576px: 16px,
+      768px: 18px,
+      992px: 20px
+    ); 
+    @include poly-fluid-sizing("height", $size);
+    @include poly-fluid-sizing("width", $size);
   }
 }
 
@@ -193,12 +216,29 @@ svg {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-evenly;
 }
 
+.tools {
+  width: 80%;
+}
+
+.tools > a,
 .tools > svg {
+  display: block;
+  margin: 25px 15px;
+
+  @media screen and (min-width: 1250px) {
+    margin: 25px auto;
+  }
+}
+
+.tools > svg,
+.tools > a > svg {
   filter: url(".grayscale");
   filter: grayscale(100%);
+  min-height: 32px;
+  min-width: 32px;
   transition: filter 0.3s cubic-bezier(0.39, 0.575, 0.565, 1);
 
   $height: (
@@ -208,14 +248,6 @@ svg {
     992px: 128px
   );
   @include poly-fluid-sizing("height", $height);
-
-  $margin: (
-    384px: 18px,
-    576px: 20px,
-    768px: 22px,
-    992px: 25px
-  );
-  @include poly-fluid-sizing("margin", $margin);
 
   &:hover {
     filter: none;

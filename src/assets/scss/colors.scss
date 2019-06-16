@@ -1,2 +1,33 @@
 $primary: #6574CD;
+$primary-light: #7886D7;
+$primary-dark: #5661B3;
+
+.bg-primary { background-color: $primary; }
+.bg-primary-light { background-color: $primary-light; }
+.bg-primary-dark { background-color: $primary-dark; }
+
+.color-primary { color: $primary; }
+.color-primary-light { color: $primary-light; }
+.color-primary-dark { color: $primary-dark; }
+
 $secondary: #fff;
+
+.bg-secondary { background-color: $secondary; }
+
+.color-secondary { color: $secondary; }
+
+$css: #563d7c;
+$html: #e34c26;
+$javascript: #f1e05a;
+$other: black;
+$shell: #89e051;
+$typescript: #2b7489;
+$vue: #2c3e50;
+
+.language-css { background-color: $css; }
+.language-html { background-color: $html; }
+.language-javascript { background-color: $javascript; }
+.language-other { background-color: $other; }
+.language-shell { background-color: $shell; }
+.language-typescript { background-color: $typescript; }
+.language-vue { background-color: $vue; }

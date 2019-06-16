@@ -29,10 +29,6 @@
       <a href="https://chain.so/a/6rj6snq" target="__blank">
         <img src="/icons/bitcoin.svg" alt="Deposits">
       </a>
-      
-      <button>
-        <img src="/icons/paint-brush.svg" alt="Change colors">
-      </button>
     </nav>
   </header>
 
@@ -41,7 +37,7 @@
   <article>
     <h2 class="color-primary">Who Am I?</h2>
     <p class="color-primary">
-      Hi, my name is Alex. I am currently about <strong id="age">~<%= age %></strong> years old.<br>
+      Hi, my name is Alex. I am currently <strong id="age"><%= Math.floor(age) %></strong> years old.<br>
       I like JavaScript.
     </p>
   </article>
@@ -68,15 +64,21 @@
 
     <div class="projects">
       <% Object.keys(repositories).forEach((index) => { %>
-        <% const repository = repositories[index] %> 
+        <% const repository = repositories[index]; %>
+        <% const language = repository.language || "Other"; %>
 
         <div class="repository">
-          <a href="<%= repository.html_url %>">
+          <a class="repository-name" href="<%= repository.html_url %>">
             <%= repository.name %>
           </a>
 
-          <p>
+          <p class="repository-description">
             <%= repository.description %>
+          </p>
+
+          <p class="repository-language">
+            <span class="language-<%= language.toLowerCase(); %>"></span>
+            <%= language %>
           </p>
 
           <div class="repository-statistics">
@@ -91,15 +93,13 @@
             </div>
           </div>
         </div>
-      <% }) %>
+      <% }); %>
     </div>
   </article>
 
   <footer>
     <%- include("../partials/divider", { flipped: true, inverted: false }); %>
   </footer>
-
-  <script src="/js/main.js"></script>
 </body>
 
 </html>

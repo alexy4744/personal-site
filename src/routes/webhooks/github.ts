@@ -16,7 +16,7 @@ const ACTIONS_TO_REMOVE: string[] = ["archived", "deleted", "privatized"];
 
 // Make sure that the request is coming from GitHub by validating with our webhook secret
 route.all("/", (req: Request, res: Response, next: NextFunction): void => {
-  const signature: string = req.get("x-hub-signature");
+  const signature: string | undefined = req.get("x-hub-signature");
   if (!signature) return res.status(400).end();
 
   const payload: string = JSON.stringify(req.body);

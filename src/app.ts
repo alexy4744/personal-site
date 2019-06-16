@@ -1,4 +1,3 @@
-
 import bodyParser from "body-parser";
 import express, { Application } from "express";
 import path from "path";

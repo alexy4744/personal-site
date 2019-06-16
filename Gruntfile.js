@@ -1,23 +1,29 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 
+const autoprefixer = require("autoprefixer");
+const babel = require("rollup-plugin-babel");
+const cssnano = require("cssnano");
+const nodeBuiltins = require("rollup-plugin-node-builtins");
 const sass = require("sass");
 
 module.exports = (grunt) => {
   grunt.initConfig({
     pkg: grunt.file.readJSON("package.json"),
-    babel: {
+    rollup: {
       options: {
-        sourceMap: false,
-        presets: ["@babel/preset-env"]
+        plugins: () => [
+          nodeBuiltins(),
+          babel({
+            exclude: "./node_modules/**",
+            presets: ["@babel/preset-env"],
+            sourceMap: false
+          })
+        ]
       },
-      dist: {
-        files: [{
-          expand: true,
-          cwd: "./src/assets/js",
-          src: ["*.js"],
-          dest: "./public/js"
-        }]
-      }
+      files: {
+        dest: "public/js/main.bundle.js",
+        src: "src/assets/js/main.js",
+      },
     },
     sass: {
       options: {
@@ -34,38 +40,34 @@ module.exports = (grunt) => {
         }]
       }
     },
-    uglify: {
+    postcss: {
       options: {
-        banner: "/*! <%= pkg.name %> <%= grunt.template.today(\"yyyy-mm-dd\") %> */\n",
-        output: {
-          comments: false
-        }
+        map: false,
+        processors: [
+          autoprefixer(),
+          cssnano()
+        ]
       },
-      build: {
-        files: [{
-          expand: true,
-          cwd: "./public/js",
-          src: ["*.js"],
-          dest: "./public/js"
-        }]
+      dist: {
+        src: "public/**/*.css"
       }
     },
     watch: {
       css: {
-        files: "./src/assets/scss/*.scss",
+        files: "./src/assets/scss/**/*.scss",
         tasks: ["sass"]
       },
       js: {
-        files: "./src/assets/js/*.js",
-        tasks: ["babel", "uglify"],
+        files: "./src/assets/js/**/*.js",
+        tasks: ["rollup"],
       }
     }
   });
 
-  grunt.loadNpmTasks("grunt-babel");
+  grunt.loadNpmTasks("grunt-postcss");
+  grunt.loadNpmTasks("grunt-rollup");
   grunt.loadNpmTasks("grunt-sass");
-  grunt.loadNpmTasks("grunt-contrib-uglify");
   grunt.loadNpmTasks("grunt-contrib-watch");
 
-  grunt.registerTask("default", ["babel", "uglify", "sass"]);
+  grunt.registerTask("default", ["rollup", "sass", "postcss"]);
 };
