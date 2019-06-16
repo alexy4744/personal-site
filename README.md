@@ -8,6 +8,7 @@ Steps to run this project:
 4. Run `node .` command to start the server.
 
 Steps to build this project:
+
 1. Make sure to have all dev dependencies installed.
 2. Run `npm run build` or `yarn build`.
 3. Compiled JavaScript files for the backend will be found in the `build` folder and built frontend assets(scss, js) will replace old files in the `public` folder.
