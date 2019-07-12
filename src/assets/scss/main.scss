@@ -2,6 +2,15 @@
 @import "poly-fluid-sizing.scss";
 @import "colors.scss";
 
+article,
+aside,
+footer,
+header,
+nav,
+section {
+  display: block;
+}
+
 #avatar-container {
   background-image: url("/img/space.jpg");
   background-position: center;
@@ -118,17 +127,17 @@ p {
   border: 3px solid $primary;
   border-radius: 5px;
   display: flex;
+  flex: 1;
   flex-direction: column;
   height: auto;
   justify-content: center;
   margin: 15px;
-  min-width: 256px;
+  min-width: 384px;
   padding: 40px 0;
-  width: 20vw;
 
   @media screen and (max-width: 384px) {
-    min-width: 128px;
-    padding: 20px;
+    min-width: unset;
+    padding: 40px 20px;
   }
 
   & a,
@@ -180,7 +189,7 @@ p {
       576px: 16px,
       768px: 18px,
       992px: 20px
-    ); 
+    );
     @include poly-fluid-sizing("height", $size);
     @include poly-fluid-sizing("width", $size);
   }

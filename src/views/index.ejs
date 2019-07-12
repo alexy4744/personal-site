@@ -27,76 +27,79 @@
         <img src="/icons/email.svg" alt="Email">
       </a>
 
-      <a href="https://chain.so/a/6rj6snq" rel="noopener noreferrer" target="_blank" aria-label="Get my Bitcoin Address">
+      <a href="https://chain.so/a/6rj6snq" rel="noopener noreferrer" target="_blank"
+        aria-label="Get my Bitcoin Address">
         <img src="/icons/bitcoin.svg" alt="Chain.so">
       </a>
     </nav>
   </header>
 
-  <%- include("../partials/divider", { flipped: false, inverted: false }); %>
+  <main>
+    <%- include("../partials/divider", { flipped: false, inverted: false }); %>
 
-  <article>
-    <h2 class="color-primary">Who Am I?</h2>
-    <p class="color-primary">
-      Hi, my name is Alex. I am currently <strong id="age"><%= Math.floor(age) %></strong> years old.<br>
-      I like JavaScript.
-    </p>
-  </article>
-  
-  <%- include("../partials/divider", { flipped: false, inverted: true }); %>
+    <article>
+      <h2 class="color-primary">Who Am I?</h2>
+      <p class="color-primary">
+        Hi, my name is Alex. I am currently <strong id="age"><%= age %></strong> years old.<br>
+        I like JavaScript.
+      </p>
+    </article>
 
-  <article class="bg-primary">
-    <h2>Toolset</h2>
+    <%- include("../partials/divider", { flipped: false, inverted: true }); %>
 
-    <div class="tools">
-      <%- include("../partials/tools/html.ejs") %>
-      <%- include("../partials/tools/css.ejs") %>
-      <%- include("../partials/tools/vue.ejs") %>
-      <%- include("../partials/tools/mongodb.ejs") %>
-      <%- include("../partials/tools/sass.ejs") %>
-      <%- include("../partials/tools/nodejs.ejs") %>
-    </div>
-  </article>
+    <article class="bg-primary">
+      <h2>Toolset</h2>
 
-  <%- include("../partials/divider", { flipped: false, inverted: false }); %>
+      <div class="tools">
+        <%- include("../partials/tools/html.ejs") %>
+        <%- include("../partials/tools/css.ejs") %>
+        <%- include("../partials/tools/vue.ejs") %>
+        <%- include("../partials/tools/mongodb.ejs") %>
+        <%- include("../partials/tools/sass.ejs") %>
+        <%- include("../partials/tools/nodejs.ejs") %>
+      </div>
+    </article>
 
-  <article>
-    <h2 class="color-primary">Projects</h2>
+    <%- include("../partials/divider", { flipped: false, inverted: false }); %>
 
-    <div class="projects">
-      <% Object.keys(repositories).forEach((index) => { %>
-        <% const repository = repositories[index]; %>
-        <% const language = repository.language || "Other"; %>
+    <article>
+      <h2 class="color-primary">Projects</h2>
 
-        <div class="repository">
-          <a class="repository-name" href="<%= repository.html_url %>">
-            <%= repository.name %>
-          </a>
+      <div class="projects">
+        <% Object.keys(repositories).forEach((index) => { %>
+          <% const repository = repositories[index]; %>
+          <% const language = repository.language || "Other"; %>
 
-          <p class="repository-description">
-            <%= repository.description %>
-          </p>
+          <div class="repository">
+            <a class="repository-name" href="<%= repository.html_url %>">
+              <%= repository.name %>
+            </a>
 
-          <p class="repository-language">
-            <span class="language-<%= language.toLowerCase(); %>"></span>
-            <%= language %>
-          </p>
+            <p class="repository-description">
+              <%= repository.description %>
+            </p>
 
-          <div class="repository-statistics">
-            <div>
-              <img src="/icons/star.svg" alt="Stargazers: ">
-              <span><%= repository.stargazers_count %></span>
-            </div>
+            <p class="repository-language">
+              <span class="language-<%= language.toLowerCase(); %>"></span>
+              <%= language %>
+            </p>
 
-            <div>
-              <img src="/icons/eye.svg" alt="Watchers: ">
-              <span><%= repository.watchers_count %></span>
+            <div class="repository-statistics">
+              <div>
+                <img src="/icons/star.svg" alt="Stargazers: ">
+                <span><%= repository.stargazers_count %></span>
+              </div>
+
+              <div>
+                <img src="/icons/eye.svg" alt="Watchers: ">
+                <span><%= repository.watchers_count %></span>
+              </div>
             </div>
           </div>
-        </div>
-      <% }); %>
-    </div>
-  </article>
+        <% }); %>
+      </div>
+    </article>
+  </main>
 
   <footer>
     <%- include("../partials/divider", { flipped: true, inverted: false }); %>

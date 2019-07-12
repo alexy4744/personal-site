@@ -11,6 +11,9 @@ const app_1 = __importDefault(require("./app"));
 const GitHubRepository_1 = __importDefault(require("./entity/GitHubRepository"));
 const prettyConsole_1 = __importDefault(require("./utils/prettyConsole"));
 const PORT = Number(process.env.PORT) || 8080;
+const { GITHUB_USERNAME } = process.env;
+if (!GITHUB_USERNAME)
+    throw new Error("GITHUB_USERNAME not provided in .env!");
 (async () => {
     try {
         const connection = await typeorm_1.createConnection();
@@ -20,7 +23,7 @@ const PORT = Number(process.env.PORT) || 8080;
             .from(GitHubRepository_1.default)
             .execute();
         prettyConsole_1.default.log("Fetching repositories...");
-        const response = await node_fetch_1.default("https://api.github.com/users/alexy4744/repos");
+        const response = await node_fetch_1.default(`https://api.github.com/users/${GITHUB_USERNAME}/repos`);
         if (!response.ok)
             throw new Error(response.statusText);
         const repositories = await response.json();

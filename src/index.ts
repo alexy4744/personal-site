@@ -12,6 +12,8 @@ import GitHubRepository from "./entity/GitHubRepository";
 import prettyConsole from "./utils/prettyConsole";
 
 const PORT: number = Number(process.env.PORT) || 8080;
+const { GITHUB_USERNAME } = process.env;
+if (!GITHUB_USERNAME) throw new Error("GITHUB_USERNAME not provided in .env!");
 
 (async (): Promise<void | never> => {
   try {
@@ -25,7 +27,7 @@ const PORT: number = Number(process.env.PORT) || 8080;
 
     prettyConsole.log("Fetching repositories...");
 
-    const response: Response = await fetch("https://api.github.com/users/alexy4744/repos");
+    const response: Response = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos`);
     if (!response.ok) throw new Error(response.statusText);
 
     const repositories: GitHubRepository[] = await response.json();

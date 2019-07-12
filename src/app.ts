@@ -1,4 +1,3 @@
-import bodyParser from "body-parser";
 import express, { Application } from "express";
 import path from "path";
 
@@ -12,8 +11,6 @@ app.set("view engine", "ejs");
 app.set("view options", { rmWhitespace: true });
 
 app.use(express.static(path.join(__dirname, "../public")));
-
-app.use(bodyParser.json());
 
 app.use(index);
 app.use("/webhooks", webhooks);

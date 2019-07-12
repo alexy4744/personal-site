@@ -20,7 +20,7 @@ route.get("/", (_: Request, res: Response): void => {
     .getMany()
     .then((repositories: GitHubRepository[]): void => {
       res.render("index", {
-        age: ((Date.now() - birthday) * 3.17098e-11).toFixed(7),
+        age: Math.floor((Date.now() - birthday) * 3.17098e-11),
         birthday,
         repositories
       });
